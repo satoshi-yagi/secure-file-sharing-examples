@@ -1,6 +1,6 @@
 # About
 
-How to share decrypt gpg encrypted file securely under restricted situation.
+How to share and decrypt gpg encrypted file securely under restricted situation.
 
 [gpg-password-decrypt](gpg-password-decrypt/README.md)
 
