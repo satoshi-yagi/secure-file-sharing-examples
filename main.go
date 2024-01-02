@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"path/filepath"
 	"strings"
@@ -53,7 +53,7 @@ func decrypter(fileName, password string) {
 		fmt.Println(err.Error())
 		return
 	}
-	bytes, err := ioutil.ReadAll(md.UnverifiedBody)
+	bytes, err := io.ReadAll(md.UnverifiedBody)
 	if err != nil {
 		fmt.Println(err.Error())
 		return
