@@ -93,7 +93,7 @@ z:\sample>dir tmp
 
 # Troubleshooting
 
-If you give this program to Mac user, the program may not be allowed to open on Mac due to Mac security. Please refer to this [Stgackoverflow article](https://stackoverflow.com/questions/4833052/how-do-i-remove-the-extended-attributes-on-a-file-in-mac-os-x).
+If you give this program to Mac user, the program may not be allowed to open on Mac due to Mac security. Please refer to this [Stackoverflow article](https://stackoverflow.com/questions/4833052/how-do-i-remove-the-extended-attributes-on-a-file-in-mac-os-x).
 
 What you need to do is to remove some attribute.
 
