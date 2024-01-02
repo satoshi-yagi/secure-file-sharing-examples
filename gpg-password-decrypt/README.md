@@ -1,20 +1,17 @@
 # About
 
-It may be difficult to require users to open gpg encrypted files with password due to their lack of capability to install additional software to their computer or lack of IT literacy.
-
-Although best way is to convince them install business required software to their computer, you can use use this workaround to let them decrypt without additional software installation.
-
-Use this simple program to decrypt gpg file for both of Windows and Mac OS.
+This tool addresses the challenge of decrypting GPG-encrypted files on Windows and Mac OS without requiring additional software installation, catering to users who lack IT literacy or software installation capabilities.
 
 ![](images/situation.drawio.svg)
 
-# How to use
+# How to Use
 
 A sample procedure to decrypt gpg encrypted file with password.
 
 Build the program
 
 ```sh
+# on Mac
 make build
 # you can find bin/main.exe for Windows program
 ```
@@ -27,12 +24,24 @@ cd tmp
 docker run -it --rm --workdir /home -v $(pwd):/home/ alpine sh
 
 apk update && apk add gpg gpg-agent openssl
+```
 
+For demonstration, let's create below sample text file.
+
+Please replace this file with your own file.
+
+```sh
 echo 'secret' > file.txt
+```
 
+copy generated string to clipboard
+
+```sh
 openssl rand -base64 20
 # FUOMRTTqmXid1fhlMBn0VhcTylw=
+```
 
+```sh
 gpg --symmetric --output file-aes256.txt.gpg --cipher-algo AES256 file.txt
 # input the above random password
 
@@ -45,13 +54,13 @@ gpg --symmetric --output file-aes256.txt.gpg --cipher-algo AES256 file.txt
 
 Decrypt it
 
-Again, use this program because the the other end can't install any additional software
+Again, use this program because the other end can't install any additional software.
 
 For Windows, please share this program to the other end as well as the target file via email.
 
 It's recommended to share passphrase via SMS or some other method than the above.
 
-You will find decrypted file name in the same directory as the source file
+After decryption, you will find decrypted file name in the same directory as the source file.
 
 Here is an example of executing the script on Windows command prompt.
 
@@ -70,7 +79,7 @@ z:\sample>dir tmp
                1 File(s)             90 bytes
                2 Dir(s)   7,641,030,656 bytes free
 
-z:\sample>main.exe tmp/file-aes256.txt.gpg password2023
+z:\sample>main.exe tmp/file-aes256.txt.gpg <password>
 
 z:\sample>dir tmp
 
@@ -80,4 +89,14 @@ z:\sample>dir tmp
 01/30/2023  07:17 AM                12 file-aes256.txt
                2 File(s)            102 bytes
                2 Dir(s)   7,636,475,904 bytes free
+```
+
+# Troubleshooting
+
+If you give this program to Mac user, the program may not be allowed to open on Mac due to Mac security. Please refer to this [Stgackoverflow article](https://stackoverflow.com/questions/4833052/how-do-i-remove-the-extended-attributes-on-a-file-in-mac-os-x).
+
+What you need to do is to remove some attribute.
+
+```shell
+xattr -d com.apple.quarantine main-mac
 ```
